@@ -125,7 +125,7 @@ file_end() {
 
 version_control() {
 	[ true = $(git -C "$(dirname $template)" rev-parse --is-inside-work-tree 2>/dev/null) ] || return
-	remote=${XLINT_UPSTREAM:-$(git -C "$(dirname $template)" remote -v | grep -P [:/]void-linux/void-packages | head -n1 | cut -f1)}
+	remote=${XLINT_UPSTREAM:-$(git -C "$(dirname $template)" remote -v | grep -P [:/]Chocimier/void-packages | head -n1 | cut -f1)}
 	[ "$remote" ] || return
 	prev_version=$(git -C "$(dirname $template)" cat-file blob ${remote}/master:./$(basename $template) 2>/dev/null | grep -Po '^version=\K.*')
 	xbps-uhelper cmpver "$version" "$prev_version"
